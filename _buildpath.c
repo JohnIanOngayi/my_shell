@@ -17,7 +17,7 @@ char **build_path(char **command, node *h)
 		{
 			break;
 		}
-		str = (char *)malloc(strlen(h->directory) + strlen(command[0]) + 2);
+		str = (char *)malloc(strlen(h->directory) + _strlen(command[0]) + 2);
 		if (str == NULL)
 		{
 			perror("strdup");

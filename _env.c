@@ -28,7 +28,7 @@ char *_getenv(const char *name)
 		return (NULL);
 	}
 
-	name_len = strlen(name);
+	name_len = _strlen(name);
 	for (env = environ; *env != NULL; env++)
 	{
 		if (strncmp(name, *env, name_len) == 0 && (*env)[name_len] == '=')
@@ -81,7 +81,7 @@ int _unsetenv(const char *name)
 		fprintf(stderr, "Invalid argument\n");
 		return (-1);
 	}
-	name_len = strlen(name);
+	name_len = _strlen(name);
 	for (env = environ; *env != NULL; env++)
 	{
 		if (strncmp(name, *env, name_len) == 0 && (*env)[name_len] == '=')
@@ -121,7 +121,7 @@ int _setenv(const char *name, const char *value, int overwrite)
 
 	if (!validateArguments(name, value))
 		return (-1);
-	name_len = strlen(name);
+	name_len = _strlen(name);
 	for (env = environ; *env != NULL; env++)
 	{
 		if (variableExists(name, *env, name_len))

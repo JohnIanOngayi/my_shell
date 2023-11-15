@@ -92,5 +92,6 @@ void _puts(const char *str);
 void _putshell(const char *str);
 int _isdigit(int c);
 int _strcmp(const char *s1, const char *s2);
+int _strlen(const char *s);
 
 #endif /*__SHELL_H__*/

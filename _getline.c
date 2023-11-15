@@ -20,8 +20,14 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 			return (-1);
 		}
 	}
-
 	num = read(fileno(stream), *lineptr, *n);
+	if (num == 0)
+	{
+		free(*lineptr);
+		_putchar('\n');
+		fflush(stdout);
+		exit(EXIT_SUCCESS);
+	}
 	if (num == -1)
 	{
 		perror("getline read");
