@@ -86,5 +86,9 @@ void replace_env_var(char **cmd, char *pos);
 
 
 /*Custom functions*/
+int _putchar(int c);
+char *_strchr(const char *s, char c);
+void _puts(const char *str);
+
 
 #endif /*__SHELL_H__*/
