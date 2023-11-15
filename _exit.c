@@ -16,7 +16,7 @@ int _is_exit(char **argv)
 		perror("exit_int malloc");
 	}
 	*exit_value = 0;
-	if (argv[1] != NULL)
+	if (argv[2] != NULL)
 	{
 		perror("too many arguments");
 		*exit_value = 1;

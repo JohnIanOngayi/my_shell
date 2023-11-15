@@ -8,7 +8,7 @@ void _printenv(void)
 
 	for (env = environ; *env != NULL; env++)
 	{
-		printf("%s\n", *env);
+		_puts(*env);
 	}
 }
 

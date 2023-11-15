@@ -15,7 +15,7 @@ int wcounter(char *str, const char *delimiter)
 	in_word = 0;
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (strchr(delimiter, str[i]) != NULL)
+		if (_strchr(delimiter, str[i]) != NULL)
 		{
 			in_word = 0;
 		}

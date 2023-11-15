@@ -8,7 +8,7 @@
  */
 int validateArguments(const char *name, const char *value)
 {
-	if (!name || !value || strchr(name, '='))
+	if (!name || !value || _strchr(name, '='))
 	{
 		fprintf(stderr, "Invalid arguments\n");
 		return (0);

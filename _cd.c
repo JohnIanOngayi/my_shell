@@ -55,7 +55,7 @@ int _cd(char **argv)
 		if (_change_directory((char *)home_dir, current, "arg-less") == 1)
 			_update_pwd_env(current);
 	}
-	else if (strcmp(argv[1], "-") == 0)
+	else if (_strcmp(argv[1], "-") == 0)
 	{
 		path = strdup(getenv("OLDPWD"));
 		if (path != NULL)

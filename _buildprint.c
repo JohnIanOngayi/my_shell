@@ -15,7 +15,7 @@ size_t print_list(node *h)
 	while (ptr != NULL)
 	{
 		num++;
-		printf("%s\n", ptr->directory);
+		_puts(ptr->directory);
 		ptr = ptr->next;
 	}
 	return (num);

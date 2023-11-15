@@ -89,6 +89,8 @@ void replace_env_var(char **cmd, char *pos);
 int _putchar(int c);
 char *_strchr(const char *s, char c);
 void _puts(const char *str);
-
+void _putshell(const char *str);
+int _isdigit(int c);
+int _strcmp(const char *s1, const char *s2);
 
 #endif /*__SHELL_H__*/

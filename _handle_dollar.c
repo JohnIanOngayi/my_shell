@@ -7,7 +7,7 @@ void process_dollar_sign(char **cmd)
 {
 	char *pos;
 
-	while ((pos = strchr(*cmd, '$')) != NULL)
+	while ((pos = _strchr(*cmd, '$')) != NULL)
 	{
 		if (pos[1] == '?')
 		{
@@ -64,7 +64,7 @@ void replace_pid(char **cmd, char *pos)
  */
 void replace_env_var(char **cmd, char *pos)
 {
-	char *end = strchr(pos + 2, '}');
+	char *end = _strchr(pos + 2, '}');
 	char *env_var, *env_value;
 
 	if (end != NULL)
@@ -106,7 +106,7 @@ void replace_generic_env_var(char **cmd, char *pos)
 
 	if (*end == '{')
 	{
-		brace_end = strchr(end + 1, '}');
+		brace_end = _strchr(end + 1, '}');
 		if (brace_end != NULL)
 		{
 			*brace_end = '\0';

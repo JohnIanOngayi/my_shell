@@ -22,9 +22,9 @@ int _scratch(char **argv)
 		return (1);
 	for (i = 0; i < j; i++)
 	{
-		if (strcmp(argv[0], builtin_str[i]) == 0)
+		if (_strcmp(argv[0], builtin_str[i]) == 0)
 			return ((*builtin_func[i])(argv));
-		if (strcmp(argv[0], "env") == 0)
+		if (_strcmp(argv[0], "env") == 0)
 			_printenv();
 	}
 	return (_executor(argv));

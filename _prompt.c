@@ -13,14 +13,14 @@ void _prompt(void)
 		perror("getcwd");
 		free(current);
 	}
-	if (strcmp(home_dir, current) != 0)
+	if (_strcmp(home_dir, current) != 0)
 	{
-		printf("\x1B[31mmyshell%s~$\x1B[0m", current);
+		_putshell("myshell~$");
 		fflush(stdout);
 	}
 	else
 	{
-		printf("\x1B[31mmyshell~$\x1B[0m");
+		_putshell("myshell~$");
 		fflush(stdout);
 	}
 	fflush(stdout);
