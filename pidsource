@@ -1,0 +1,14 @@
+#include "shell.h"
+/**
+ * _print_pid - prints pids and ppids
+ */
+int main(void)
+{
+    pid_t pid, ppid;
+
+    pid = getpid();
+    ppid = getppid();
+    printf("Process ID: %d\n", pid);
+    printf("Parent PID: %d\n", ppid);
+    return (0);
+}

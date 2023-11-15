@@ -1,0 +1,96 @@
+#include "shell.h"
+
+/**
+ * _replace_status - Replaces "$?" with the exit status.
+ * @input: The input string.
+ * @status: The exit status.
+ * Return: The modified string.
+ */
+char *_replace_status(const char *input, int status) {
+	char buffer[32];
+	snprintf(buffer, sizeof(buffer), "%d", status);
+	return strdup_replace(input, strchr(input, '$') - input, 2, buffer);
+}
+
+/**
+ * _replace_pid - Replaces "$$" with the process ID.
+ * @input: The input string.
+ * Return: The modified string.
+ */
+char *_replace_pid(const char *input) {
+	char buffer[32];
+	snprintf(buffer, sizeof(buffer), "%d", getpid());
+	return strdup_replace(input, strchr(input, '$') - input, 2, buffer);
+}
+
+/**
+ * _replace_env_var - Replaces environment variables in the format "${var}".
+ * @input: The input string.
+ * Return: The modified string.
+ */
+char *_replace_env_var(const char *input)
+{
+	const char *start, *end, *env_value;
+	char *env_var, *result;
+	size_t var_len;
+
+	start = strchr(input, '{') + 1;
+	end = strchr(start, '}');
+
+	if (end == NULL)
+		return (strdup_replace(input, 0, 1, ""));
+
+	var_len = end - start;
+	env_var = strndup(start, var_len);
+	if (env_var == NULL)
+	{
+		perror("_replace_env_var strdup");
+		return (strdup(input));
+	}
+
+	env_value = getenv(env_var);
+	if (env_value == NULL)
+		return (strdup_replace(input, 0, var_len + 3, ""));
+
+	result = strdup_replace(input, start - input - 1, var_len + 3, env_value);
+	free(env_var);
+	return (result);
+}
+
+/**
+ * _handle_dollar_sign - Handles the replacement of special tokens.
+ * @command: The array of strings representing the command.
+ * @status: The exit status.
+ * Return: The modified array of strings.
+ */
+char **_handle_dollar_sign(char **command, int status) {
+	char **tmp;
+	const char *pos;
+	for (tmp = command; *tmp != NULL; tmp++)
+	{
+		pos = *tmp;
+
+		while ((pos = strchr(pos, '$')) != NULL)
+		{
+			if (pos[1] == '?')
+			{
+				*tmp = _replace_status(*tmp, status);
+			}
+			else if (pos[1] == '$')
+			{
+				*tmp = _replace_pid(*tmp);
+			}
+			else if (pos[1] == '{')
+			{
+				*tmp = _replace_env_var(*tmp);
+			}
+			else
+			{
+				*tmp = _replace_env_var(*tmp);
+			}
+			pos = strchr(pos + 1, '$');
+		}
+	}
+
+	return (command);
+}
