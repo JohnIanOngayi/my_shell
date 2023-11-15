@@ -32,8 +32,8 @@ char **_handle_quotes(char **command)
 	tmp = command;
 	for (tmp = command; *tmp != NULL; tmp++)
 	{
-		if ((**tmp == '"' || **tmp == '\'') && (*(*tmp + strlen(*tmp) - 1)
-					== '"' || *(*tmp + strlen(*tmp) - 1) == '\''))
+		if ((**tmp == '"' || **tmp == '\'') && (*(*tmp + _strlen(*tmp) - 1)
+					== '"' || *(*tmp + _strlen(*tmp) - 1) == '\''))
 		{
 			len = strlen(*tmp);
 			cpy = (char *)malloc(len - 1);
@@ -66,8 +66,8 @@ char *strdup_replace(const char *str, size_t start, size_t len,
 	size_t orig_len, repl_len, new_len;
 	char *new_str;
 
-	orig_len = strlen(str);
-	repl_len = strlen(replacement);
+	orig_len = _strlen(str);
+	repl_len = _strlen(replacement);
 	new_len = orig_len - len + repl_len + 1;
 	new_str = (char *)malloc(new_len);
 	if (new_str == NULL)
